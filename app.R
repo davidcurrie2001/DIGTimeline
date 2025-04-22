@@ -1,0 +1,131 @@
+library(shiny)
+library(bslib)
+library(dplyr)
+library(DT)
+library(timevis)
+
+# Define the groups
+groups <- data.frame(
+  id = c("policy","collection"),
+  content = c("Policy","Collection")
+)
+
+ui <- fluidPage(
+  
+  theme = bs_theme(bootswatch = "lumen"),
+  # Application title
+  titlePanel("100 years of data management at ICES"),
+  hr(),
+  
+  selectInput("GroupSelect",
+              label="Type",
+              choices=groups$content,
+              selected=groups$content,
+              multiple = TRUE),
+    
+      tabsetPanel(
+        tabPanel("Introduction",
+                 "Add text here"
+        ),
+        tabPanel("Timeline",
+          timevisOutput("timeline")
+        ),
+        tabPanel("Table",
+         fluidRow(
+           column(dataTableOutput("timelineTable"), width = 12)
+         )
+        )
+      )
+)
+
+server <- function(input, output, session) {
+  
+  
+  # read the file data/DIGTimeline_data.txt which is tab delimited
+  timelineData <- read.csv("data/DIGTimeline_data.txt", sep = "\t")
+  #timelineData$content <- timelineData$Title
+  
+  # Function to format the data for the timeline
+  templateDIG <- function(title, body, link) {
+    
+    shortBody <- substr(body, 1, 20)
+    shortBody <- paste0(shortBody, "...")
+    
+    if (link == "") {
+      sprintf(
+        '<table><tbody>
+      <tr><td><em>%s</em></td></tr>
+      <tr>
+        <td>%s</td>
+      </tr>
+    </tbody></table>',
+        title, shortBody)
+    } else {
+      sprintf(
+        '<table><tbody>
+      <tr><td><em><a href="%s" target="_blank">%s</a></em></td></tr>
+      <tr>
+        <td>%s</td>
+      </tr>
+    </tbody></table>',
+        link, title, shortBody)
+    }
+  }
+  
+  # Filter the input data using the widget values
+  FilterEntries <- reactive({
+
+    # Filter using the type and severity inputs
+    myEntriesFiltered <- timelineData
+
+    # If we have soemthing in the issue input then filter using that
+    if (length(input$GroupSelect) == 0 & is.null(input$GroupSelect)){
+      myEntriesFiltered <- myEntriesFiltered[0==1,]
+    } else {
+      # Filter by the issue numbers
+      myEntriesFiltered <- myEntriesFiltered[tolower(myEntriesFiltered$group)  %in% tolower(input$GroupSelect),]
+    }
+
+    myEntriesFiltered
+
+  })
+
+  # Filter and fromat data for the time line
+  FormatDataForTimeline <- reactive({
+
+    myData <- FilterEntries()
+
+    #print(myData)
+
+    # Create a new column in the data frame with the template
+    # use sapply to apply the templateDIG function to each row of the data frame
+    myData$content <- sapply(1:nrow(myData), function(i) {
+      templateDIG(myData$title[i],
+                  myData$description[i],
+                  myData$link[i])
+    })
+
+    myData
+
+  })
+
+
+  output$timeline <- renderTimevis({
+    timevis(data = FormatDataForTimeline(),
+            groups = groups)
+  })
+
+  #Display the timeline in a table
+  output$timelineTable <- DT::renderDataTable({
+
+    data <- FilterEntries() %>%
+      dplyr::mutate(htmlLink =  paste0("<a href='",link, "'  target='_blank'>Link</a>")) %>%
+      dplyr::arrange(desc(start)) %>%
+      dplyr::select(title,description,htmlLink,start, end, group)  %>%
+      dplyr::rename(Title = title, Description = description, Link = htmlLink, Start = start, End = end, Group = group)
+  }, rownames= FALSE, escape = FALSE, options = list(dom = 'tp'))
+  
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)

@@ -1,0 +1,3 @@
+id	title	description	link	start	end	group
+1	Discussion paper	In 1988 Carlberg and F&oslash;yn wrote an ICES discussion paper titled 'Stimulated Growth and Safeguarding of the ICES Oceanographic Data Bank. A Discussion Paper'.  'During a number of years there has been a consent to build up and increase the ICES oceanographic data base to the benefit of the member countries.'	https://www.ices.dk/sites/pub/CM%20Doccuments/1988/C/1988_C16.pdf	1988/01/01		policy
+2	"Status, rules and procedures"	"In 1994 ICES summarised the 'Status, and Rules and Procedures governing Oceanographic, Environmental, and Fisheries data bases maintained at the ICES Secretariat'"	https://doi.org/10.17895/ices.pub.24573632.v1	1994/01/01		policy
