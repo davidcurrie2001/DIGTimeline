@@ -6,50 +6,58 @@ library(timevis)
 
 # Define the groups
 groups <- data.frame(
-  id = c("policy","collection"),
-  content = c("Policy","Collection")
+  id = c("policy","group","platform","metadata","technique","distribution","format","standard","use","rescue"),
+  content = c("Data Policy","ICES Group","Data Collection Platforms", "Metadata", "Data Collection Techniques", "Data Distribution", "Data Formats", "Standards", "Data Use", "Data Rescue")
 )
 
+### UI ####
 ui <- fluidPage(
   
   theme = bs_theme(bootswatch = "lumen"),
   # Application title
   titlePanel("100 years of data management at ICES"),
   hr(),
-  
-  selectInput("GroupSelect",
-              label="Type",
-              choices=groups$content,
-              selected=groups$content,
-              multiple = TRUE),
-    
       tabsetPanel(
         tabPanel("Introduction",
-                 "Add text here"
+                 "Add text to describe the app here"
         ),
-        tabPanel("Timeline",
-          timevisOutput("timeline")
-        ),
-        tabPanel("Table",
-         fluidRow(
-           column(dataTableOutput("timelineTable"), width = 12)
-         )
+        tabPanel("Selected Events",
+                 selectInput("GroupSelect",
+                             label="Type",
+                             choices=groups$content,
+                             selected=groups$content,
+                             multiple = TRUE),
+                 tabsetPanel(
+                   tabPanel("Timeline",
+                            timevisOutput("timeline")
+                   ),
+                   tabPanel("Table",
+                            fluidRow(
+                              column(dataTableOutput("timelineTable"), width = 12)
+                            )
+                  )
+                )
         )
       )
 )
 
+### server ###
 server <- function(input, output, session) {
   
   
   # read the file data/DIGTimeline_data.txt which is tab delimited
   timelineData <- read.csv("data/DIGTimeline_data.txt", sep = "\t")
-  #timelineData$content <- timelineData$Title
+  #timelineData <- timelineData[1:14,]
+  
   
   # Function to format the data for the timeline
   templateDIG <- function(title, body, link) {
     
     shortBody <- substr(body, 1, 20)
     shortBody <- paste0(shortBody, "...")
+    #print(title)
+    #print(shortBody)
+    #print(link)
     
     if (link == "") {
       sprintf(
@@ -77,13 +85,19 @@ server <- function(input, output, session) {
 
     # Filter using the type and severity inputs
     myEntriesFiltered <- timelineData
+    
+    groupsTemp <- groups %>%
+      dplyr::rename(groupDescription = content)
+    
+    myEntriesFiltered <- myEntriesFiltered %>%
+      dplyr::left_join(groupsTemp, by = c("group"="id"))
 
     # If we have soemthing in the issue input then filter using that
     if (length(input$GroupSelect) == 0 & is.null(input$GroupSelect)){
       myEntriesFiltered <- myEntriesFiltered[0==1,]
     } else {
       # Filter by the issue numbers
-      myEntriesFiltered <- myEntriesFiltered[tolower(myEntriesFiltered$group)  %in% tolower(input$GroupSelect),]
+      myEntriesFiltered <- myEntriesFiltered[tolower(myEntriesFiltered$groupDescription)  %in% tolower(input$GroupSelect),]
     }
 
     myEntriesFiltered
@@ -112,7 +126,9 @@ server <- function(input, output, session) {
 
   output$timeline <- renderTimevis({
     timevis(data = FormatDataForTimeline(),
-            groups = groups)
+            groups = groups,
+            showZoom = TRUE,
+            fit = TRUE)
   })
 
   #Display the timeline in a table
@@ -120,9 +136,9 @@ server <- function(input, output, session) {
 
     data <- FilterEntries() %>%
       dplyr::mutate(htmlLink =  paste0("<a href='",link, "'  target='_blank'>Link</a>")) %>%
-      dplyr::arrange(desc(start)) %>%
-      dplyr::select(title,description,htmlLink,start, end, group)  %>%
-      dplyr::rename(Title = title, Description = description, Link = htmlLink, Start = start, End = end, Group = group)
+      dplyr::arrange(start) %>%
+      dplyr::select(title,description,htmlLink,start, groupDescription)  %>%
+      dplyr::rename(Title = title, Description = description, Link = htmlLink, Date = start, Type = groupDescription)
   }, rownames= FALSE, escape = FALSE, options = list(dom = 'tp'))
   
 }
