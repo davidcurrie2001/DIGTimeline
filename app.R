@@ -6,8 +6,8 @@ library(timevis)
 
 # Define the groups
 groups <- data.frame(
-  id = c("policy","group","platform","metadata","technique","distribution","format","standard","use","rescue"),
-  content = c("Data Policy","ICES Group","Data Collection Platforms", "Metadata", "Data Collection Techniques", "Data Distribution", "Data Formats", "Standards", "Data Use", "Data Rescue")
+  id = c("ices", "policy","group","platform","metadata","technique","distribution","format","standard","use","rescue"),
+  content = c("ICES History", "Data Policy","ICES Group","Data Collection Platforms", "Metadata", "Data Collection Techniques", "Data Distribution", "Data Formats", "Standards", "Data Use", "Data Rescue")
 )
 
 ### UI ####
@@ -50,34 +50,60 @@ server <- function(input, output, session) {
   #timelineData <- timelineData[1:14,]
   
   
-  # Function to format the data for the timeline
+  # Function to format the HTML to be displayed for timeline entries
   templateDIG <- function(title, body, link) {
     
-    shortBody <- substr(body, 1, 20)
-    shortBody <- paste0(shortBody, "...")
+    shortBody <- body
+    if (nchar(shortBody)>20){
+      shortBody <- substr(shortBody, 1, 20) 
+      shortBody <- paste0(shortBody, "...") 
+    }
+
     #print(title)
     #print(shortBody)
     #print(link)
     
-    if (link == "") {
-      sprintf(
-        '<table><tbody>
-      <tr><td><em>%s</em></td></tr>
-      <tr>
-        <td>%s</td>
-      </tr>
-    </tbody></table>',
-        title, shortBody)
+    titleCode <- ""
+    if (link == ""){
+      titleCode <- '<tr><td>%s<em>%s</em></td></tr>'
     } else {
-      sprintf(
-        '<table><tbody>
-      <tr><td><em><a href="%s" target="_blank">%s</a></em></td></tr>
-      <tr>
-        <td>%s</td>
-      </tr>
-    </tbody></table>',
-        link, title, shortBody)
+      titleCode <- '<tr><td><em><a href="%s" target="_blank">%s</a></em></td></tr>'
     }
+    
+    bodyCode <- ""
+    if (shortBody == ""){
+      bodyCode <- '%s'
+    } else {
+      bodyCode <- '<tr><td>%s</td></tr>'
+    }
+    
+    allCode <- paste0('<table><tbody>',
+                      titleCode,
+                      bodyCode,
+                      '</tbody></table>')
+
+    # if (link == "") {
+    #   sprintf(
+    #     '<table><tbody>
+    #   <tr><td><em>%s</em></td></tr>
+    #   <tr>
+    #     <td>%s</td>
+    #   </tr>
+    # </tbody></table>',
+    #     title, shortBody)
+    # } else {
+    #   sprintf(
+    #     '<table><tbody>
+    #   <tr><td><em><a href="%s" target="_blank">%s</a></em></td></tr>
+    #   <tr>
+    #     <td>%s</td>
+    #   </tr>
+    # </tbody></table>',
+    #     link, title, shortBody)
+      
+      sprintf(allCode,
+              link, title, shortBody)
+
   }
   
   # Filter the input data using the widget values
@@ -139,7 +165,7 @@ server <- function(input, output, session) {
       dplyr::arrange(start) %>%
       dplyr::select(title,description,htmlLink,start, groupDescription)  %>%
       dplyr::rename(Title = title, Description = description, Link = htmlLink, Date = start, Type = groupDescription)
-  }, rownames= FALSE, escape = FALSE, options = list(dom = 'tp'))
+  }, rownames= FALSE, escape = FALSE, options = list(dom = 'tp', pageLength = 25))
   
 }
 
