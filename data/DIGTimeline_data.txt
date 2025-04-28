@@ -14,20 +14,36 @@ id	title	description	link	start	end	group
 13	DIG proposed data policy update	In 2016 DIG reviewed and proposed an update to the Data Policy.	https://doi.org/10.17895/ices.pub.8353	2016/05/23		policy
 14	DIG proposed data policy update	"In 2021 DIG proposed splitting the Data Policy into a combination of Data Policy and Data Licenses. '... a policy typically sets out a set of principles to guide decisions or achieve outcomes, while a license is a permission to do, use, or own something. Currently the ICES Data Policy encompasses both aspects. [...] DIG therefore proposed to separate out the license and data policy aspects for clarity, and better alignment with current practises elsewhere.' The revised policy was adopted by ICES Council."	https://doi.org/10.17895/ices.pub.8224	2021/05/18		policy
 15	DIG proposed data policy update	In 2025 DIG updated the definitions of 'Data Provider' and 'Data Owner' and added 'Data ownership does not transfer to ICES' statement for clarification. These changes were reviewed and accepted by SCICOM at their March 2025 meeting.		2025/03/01		policy
-16	Working Group on Marine Data Management	Working Group on Marine Data Management (WGMDM) formed		1994/01/01		group
-17	Study Group on Management of Integrated Data	Study Group on Management of Integrated Data (SGMID) formed		2004/01/01		group
-18	Working Group on Data and Information Management	WGMDM and SGDIM merge into Working Group on Data and Information Management (WGDIM)		2007/01/01		group
-19	Data and Information Group	WGDIM changes to Data and Information Group (DIG)		2013/01/01		group
-20	Inaugural meeting of ICES	"The Inaugural Meeting of ICES was held on 22 July 1902 in Copenhagen. The participants were: Denmark, Finland, Germany, The Netherlands, Norway, Sweden, Russia and United Kingdom."	https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1902/07/22		ices
-21	Belgium joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1903/01/01		ices
-22	USA joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1912/01/01		ices
-23	France and Portugal join ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1920/01/01		ices
-24	Poland joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1922/01/01		ices
-25	Latvia joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1923/01/01		ices
-26	Estonia and Spain join ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1924/01/01		ices
-27	Ireland joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1925/01/01		ices
-28	Iceland joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1938/01/01		ices
-29	ICES Convention	A new constitution for ICES	https://www.ices.dk/about-ICES/who-we-are/Documents/ICES_Convention_1964.pdf	1964/09/12		ices
-30	Canada joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1967/01/01		ices
-31	Copenhagen Declaration	Reaffiming commitment to ICES	https://www.ices.dk/about-ICES/who-we-are/Documents/CPH_declaration_2002.pdf	2002/10/04		ices
-32	Lithuania joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	2006/01/01		ices
+16	Sub-Committee for Mechanizing the Index of Hydrographic Data	Sub-Committee for Mechanizing the Index of Hydrographic Data formed		1957/01/01		group
+17	Sub-Committee for Automatic Data Processing	Sub-Committee for Automatic Data Processing formed from Sub-Committee for Mechanizing the Index of Hydrographic Data		1964/01/01		group
+18	Working Group on the Development of Marine Data Systems	Working Group on the Development of Marine Data Systems formed from Sub-Committee on Automatic Data Processing		1968/01/01		group
+19	WGMDM	Working Group on Marine Data Management (WGMDM) formed from the Working Group on the Development of Marine Data Systems		1970/01/01		group
+20	Working Group on Data Collection and Processing In Fish Capture Research	Working Group on Data Collection and Processing In Fish Capture Research formed to prepare a plan for managing data from experimental work.		1972/01/01		group
+21	Working Group on Eventual Establishment of an ICES ADP System for Fishery Statistics	Working Group on Eventual Establishment of an ICES ADP (Automatic Data Processing) System for Fishery Statistics formed		1972/01/01		group
+22	PGCCDBS	"Planning Group on Commercial Catch, Discards and Biological Sampling formed"	https://www.ices.dk/community/pages/pgccdbs-doc-repository.aspx	2002/01/01		group
+23	SGMID	Study Group on Management of Integrated Data (SGMID) formed		2004/01/01		group
+24	WGDIM	WGMDM and SGDIM merge into Working Group on Data and Information Management (WGDIM)		2007/01/01		group
+25	DIG	WGDIM changes to Data and Information Group (DIG)	https://www.ices.dk/community/groups/Pages/DIG.aspx	2013/01/01		group
+26	PGDATA	"Planning Group on Data Needs for Assessments and Advice formed from the Planning Group on Commercial Catch, Discards and Biological Sampling "		2015/01/01		group
+27	WGAcousticGov	Working Group on Acoustic Trawl Data Portal Governance formed	https://www.ices.dk/community/groups/Pages/WGacousticgov.aspx	2020/01/01		group
+28	WGDG	Working Group on DATRAS Governance formed	https://www.ices.dk/community/groups/Pages/WGDG.aspx	2019/01/01		group
+29	WGJCDP	Working Group for the Joint Cetacean Data Programme formed	https://www.ices.dk/community/groups/Pages/WGjcdp.aspx	2022/01/01		group
+30	WGRDBESGOV	Working Group on Governance of the Regional Database & Estimation System is formed (under its original name of Steering Committee for Regional Databases)	https://www.ices.dk/community/groups/Pages/WGRDBESGOV.aspx	2011/01/01		group
+31	WGSFDGOV	Working Group on Spatial Fisheries Data Governance formed	https://www.ices.dk/community/groups/Pages/WGSFDGOV.aspx	2020/01/01		group
+32	WGSMART	Working Group on SmartDots Governance formed	https://www.ices.dk/community/groups/Pages/WGSMART.aspx	2019/01/01		group
+33	WGTAFGOV	Working Group on ICES Transparent Assessment Framework Governance formed	https://www.ices.dk/community/groups/Pages/WGTAFGOV.aspx	2020/01/01		group
+34	WGELFADG	Working Group on Egg and Larvae and Fecundity and Atresia Database Governance formed	https://www.ices.dk/community/groups/Pages/WGELFADG.aspx 	2023/01/01		group
+35	WGOceanDataGov	Working Group on Oceanographic Data Governance formed		2025/05/01		group
+36	Inaugural meeting of ICES	"The Inaugural Meeting of ICES was held on 22 July 1902 in Copenhagen.  The participants were: Denmark, Finland, Germany, The Netherlands, Norway, Sweden, Russia and United Kingdom."	https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1902/07/22		ices
+37	Belgium joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1903/01/01		ices
+38	USA joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1912/01/01		ices
+39	France and Portugal join ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1920/01/01		ices
+40	Poland joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1922/01/01		ices
+41	Latvia joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1923/01/01		ices
+42	Estonia and Spain join ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1924/01/01		ices
+43	Ireland joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1925/01/01		ices
+44	Iceland joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1938/01/01		ices
+45	ICES Convention	A new constitution for ICES	https://www.ices.dk/about-ICES/who-we-are/Documents/ICES_Convention_1964.pdf	1964/09/12		ices
+46	Canada joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	1967/01/01		ices
+47	Copenhagen Declaration	Reaffiming commitment to ICES	https://www.ices.dk/about-ICES/who-we-are/Documents/CPH_declaration_2002.pdf	2002/10/04		ices
+48	Lithuania joins ICES		https://www.ices.dk/about-ICES/who-we-are/Pages/Our-history.aspx	2006/01/01		ices
